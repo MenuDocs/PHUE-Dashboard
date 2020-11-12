@@ -1,17 +1,24 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, session
+
+# ROUTER IMPORTS
+from routers.auth import authRoute
 
 app = Flask(__name__)
+app.secret_key = "menudocs"
+
+# REGISTER ROUTERS
+app.register_blueprint(authRoute, url_prefix="/auth")
 
 @app.route('/', methods=["GET"])
 def index_route():
-	return 'Hello World!'
+	if "user" in session:
+		if session["user"] == "vex":
+			return render_template("index.html", content="You are logged in!")
+		else:
+			return render_template("index.html", content="Please log in to view this page!")
+	else:
+		return render_template("index.html", content="Please log in to view this page!")
 
-@app.route('/auth', methods=["GET", "POST"])
-def auth_route():
-	if request.method == "GET":
-		return render_template('login.html')
-	elif request.method == "POST":
-		return 'POST Method!'
 
 if __name__ == "__main__":
 	app.run(debug=True)
