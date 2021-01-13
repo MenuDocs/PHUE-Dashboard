@@ -15,7 +15,7 @@ app.register_blueprint(lightRoute, url_prefix="/api/")
 def index_route():
 	content = "Please loging to view this page!"
     if session.get("user") == "vex":
-        content = "Logged in!"
+        return redirect("/auth")
 
     return render_template('index.html', content=content)
 

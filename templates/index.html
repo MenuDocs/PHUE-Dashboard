@@ -2,5 +2,11 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-{{ content }}
+<div>
+	<input style="margin-bottom: 5px;" id="light" type="text" placeholder="Light Name"><br>
+	<input style="margin-bootm:5px;" id="hue" type="text" name="hue" placeholder="Light Colour"><br>
+	<button onclick="change_colour()">Update Lights</button>
+</div>
+
+<script src="/static/js/lights.js"></script>
 {% endblock %}
