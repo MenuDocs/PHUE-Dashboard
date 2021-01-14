@@ -10,7 +10,11 @@ lights = bridge.get_light_objects("name")
 def get_lights():
     return lights
 
-def change_lught(light: str, on: bool=True, hue: int=10, saturation: int =255, brightness: int=255):
+def change_lught(light: str, on: bool=True, hue: str=None, saturation: int =255, brightness: int=255):
+    if hue is not None:
+        xy = hue.split()
+        lights[light].xy = [float(xy[0]), float(xy[1]))
+    
     lights[light].on = on
     lights[light].hue = hue
     lights[light].saturation = saturation
