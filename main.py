@@ -13,8 +13,8 @@ app.register_blueprint(light_route, url_prefix="/api/")
 
 @app.route('/', methods=["GET"])
 def index_route():
-	content = "Please loging to view this page!"
-    if session.get("user") == "vex":
+    content = "Please loging to view this page!"
+    if session.get("user") != "vex":
         return redirect("/auth")
 
     return render_template('index.html', content=content)

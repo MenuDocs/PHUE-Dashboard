@@ -1,9 +1,9 @@
 from flask import Blueprint, render_template, request, redirect, session
 from utils import light_handler
 
-light_handler = Blueprint("lights", __name__)
+light_route = Blueprint("lights", __name__)
 
-@light_handler.route("/hue/<light>/<hue>", methods=["POST"])
+@light_route.route("/hue/<light>/<hue>", methods=["POST"])
 def hue_route(light, hue):
     light_handler.change_light(light=str(light), on=True, hue=int(hue))
     resp = {
@@ -12,7 +12,7 @@ def hue_route(light, hue):
 
     return resp
 
-@lightHandler.route("/bri/<light>/<brightness>", method=["POST"])
+@light_route.route("/bri/<light>/<brightness>", methods=["POST"])
 def bri_route(light, brightness):
     light_handler.change_light(light=str(light), on=True, brightness=int(brightness))
     resp = {
